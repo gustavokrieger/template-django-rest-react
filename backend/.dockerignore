@@ -1,6 +1,19 @@
+# todo(check if is working)
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
 # Environments
 venv/
 venv.bak/
 
 # IDE
 .idea/
+
+# Version control
+.gitignore
+
+# Docker
+Dockerfile
