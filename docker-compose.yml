@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD
     ports:
       - "${DB_HOST_IP}:${DB_HOST_PORT}:5432"
+
   backend:
     build: ./backend
     environment:
@@ -24,6 +25,7 @@ services:
       - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
     depends_on:
       - db
+
   frontend:
     build: ./frontend
     command: yarn start
