@@ -22,7 +22,7 @@ services:
     volumes:
       - ./backend:/app
     ports:
-      - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
+      - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:8000"
     depends_on:
       - db
 
