@@ -17,7 +17,7 @@ services:
       - POSTGRES_PASSWORD
     env_file:
       - backend-variables.env
-    command: ${BACKEND_COMMAND}
+    command: sh -c 'wait-for db:5432 -- ${BACKEND_COMMAND}'
     volumes:
       - ./backend:/app
     ports:
