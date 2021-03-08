@@ -29,6 +29,7 @@ services:
     command: yarn start
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
