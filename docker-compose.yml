@@ -18,7 +18,7 @@ services:
       - POSTGRES_PASSWORD
     env_file:
       - backend-variables.env
-    # Waits until database is ready.
+    # Waits until database is ready before running backend command.
     command: sh -c 'wait-for db:5432 -- ${BACKEND_COMMAND}'
     volumes:
       - ./backend:/app
