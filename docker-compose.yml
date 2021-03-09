@@ -9,6 +9,7 @@ services:
       - POSTGRES_PASSWORD
     ports:
       - "${DB_HOST_IP}:${DB_HOST_PORT}:5432"
+
   backend:
     build: ./backend
     environment:
@@ -17,10 +18,22 @@ services:
       - POSTGRES_PASSWORD
     env_file:
       - backend-variables.env
-    command: ${BACKEND_COMMAND}
     volumes:
       - ./backend:/app
     ports:
-      - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:${BACKEND_CONTAINER_PORT}"
+      - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:8000"
+    # Waits until database is ready before running backend command.
+    command: sh -c 'wait-for db:5432 -- ${BACKEND_COMMAND}'
     depends_on:
       - db
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "${FRONTEND_HOST_IP}:${FRONTEND_HOST_PORT}:3000"
+    command: ${FRONTEND_COMMAND}
+    depends_on:
+      - backend
