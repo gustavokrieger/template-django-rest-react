@@ -12,7 +12,7 @@ ARG FILE=/usr/local/bin/wait-for
 RUN wget https://raw.githubusercontent.com/eficode/wait-for/v2.1.0/wait-for -O $FILE
 RUN chmod +x $FILE
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 ARG REQUIREMENTS=requirements.txt
 COPY $REQUIREMENTS .
