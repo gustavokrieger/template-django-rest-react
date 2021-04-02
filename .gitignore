@@ -1,5 +1,13 @@
-# Environments
+# Code editor
+.idea/
+.vscode/
+
+# Environment
 *.env
 
-# IDE
-.idea/
+# Python
+__pycache__/
+venv/
+
+# backend
+/backend/media/

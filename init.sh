@@ -2,9 +2,21 @@
 
 # If backend container was created with a different name, change this.
 container=template-django-rest-react_backend_1
-manage="docker exec ${container} python manage.py"
 
+# Commands
+exec="docker exec ${container}"
+manage="${exec} python manage.py"
+
+# Django
 echo Starting migrate...
 $manage migrate
-echo Starting loaddata users...
-$manage loaddata users
+echo Collecting static files...
+$manage collectstatic --no-input
+
+# Nginx
+output=$($exec /etc/init.d/nginx status)
+if [ "$output" = "nginx is not running ... failed!" ]
+then
+    echo Starting nginx...
+    $exec /usr/sbin/nginx
+fi

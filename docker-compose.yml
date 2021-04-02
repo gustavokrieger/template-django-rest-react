@@ -23,7 +23,7 @@ services:
     ports:
       - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:8000"
     # Waits until database is ready before running backend command.
-    command: sh -c 'wait-for db:5432 -- ${BACKEND_COMMAND}'
+    command: sh -c 'wait-for db:5432 -- gunicorn myproject.wsgi -b 127.0.0.1:8001'
     depends_on:
       - db
 
@@ -34,6 +34,6 @@ services:
       - /app/node_modules
     ports:
       - "${FRONTEND_HOST_IP}:${FRONTEND_HOST_PORT}:3000"
-    command: ${FRONTEND_COMMAND}
+    command: yarn start
     depends_on:
       - backend
