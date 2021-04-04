@@ -29,8 +29,6 @@ services:
 
   frontend:
     build: ./frontend
-    volumes:
-      - ./frontend:/usr/src/app
     ports:
       - "${FRONTEND_HOST_IP}:${FRONTEND_HOST_PORT}:3000"
     command: yarn start
