@@ -18,8 +18,6 @@ services:
       - POSTGRES_PASSWORD
     env_file:
       - backend-variables.env
-    volumes:
-      - ./backend:/usr/src/app
     ports:
       - "${BACKEND_HOST_IP}:${BACKEND_HOST_PORT}:8000"
     # Waits until database is ready before running backend command.

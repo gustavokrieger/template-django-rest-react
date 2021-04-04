@@ -8,12 +8,14 @@ RUN apt-get update && apt-get install -y \
 
 COPY nginx.conf /etc/nginx/
 
-ARG FILE=/usr/local/bin/wait-for
-RUN wget https://raw.githubusercontent.com/eficode/wait-for/v2.1.0/wait-for -O $FILE
-RUN chmod +x $FILE
+ARG WAIT_SCRIPT=/usr/local/bin/wait-for
+RUN wget https://raw.githubusercontent.com/eficode/wait-for/v2.1.0/wait-for -O $WAIT_SCRIPT
+RUN chmod +x $WAIT_SCRIPT
 
 WORKDIR /usr/src/app
 
 ARG REQUIREMENTS=requirements.txt
 COPY $REQUIREMENTS .
 RUN pip install --no-cache-dir -r $REQUIREMENTS
+
+COPY . .
