@@ -30,7 +30,7 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "${FRONTEND_HOST_IP}:${FRONTEND_HOST_PORT}:3000"
-    command: yarn start
+      - "${FRONTEND_HOST_IP}:${FRONTEND_HOST_PORT}:5000"
+    command: yarn serve -s -n build
     depends_on:
       - backend
