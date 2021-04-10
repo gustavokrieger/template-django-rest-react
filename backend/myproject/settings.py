@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'ld-rwcgun&h88=6tk4g*mke63#i1m2rcd^$7srzwp8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [item for item in os.getenv('ALLOWED_HOSTS', '').split(',') if item]
+ALLOWED_HOSTS = allowed_hosts.split(',') if (allowed_hosts := os.getenv('ALLOWED_HOSTS')) else []
 
 
 # Application definition
