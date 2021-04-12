@@ -6,58 +6,54 @@ Backend deployment: `gunicorn + nginx`
 
 Frontend deployment: `serve`
 
-# Environment
+# Production mode
 
-Make one duplicate of `.env.example` named `.env`, and one of `backend-variables.env.example`
-named `backend-variables.env`.
+### Requirements:
 
-On Linux or Mac, the duplicates can be created by running on the project root:
+Docker (Version tested: `20.10.5`)
+
+### Setup:
+
+First, open a terminal window and navigate root directory of this project.
+
+Create `.env` files from the `.env.example` files. Run one of the following commands:
+
+On Unix or MacOS, run:
 
     cp .env.example .env && cp backend-variables.env.example backend-variables.env
 
-On Windows, the duplicates can be created by running on the project root:
+On Windows, run:
 
     copy .env.example .env && copy backend-variables.env.example backend-variables.env
 
-Make changes to the values inside the duplicates, if necessary.
+You will need to set values to `SECRET_KEY` and `ALLOWED_HOSTS` in the `backend-variables.env` file. Make changes to the other values if necessary.
 
-# Running
+### Running:
 
-From the project root, simply run:
+Run the following commands in the root directory of this project.
 
-    docker-compose up
+Build the Docker containers. Run:
 
-_Docker version tested:_ `20.10.2`
+    docker-compose build
 
-### Pages
+Start running the Docker containers in the background. Run:
 
-_(Some operations may fail if executed before database initialization)._
+    docker-compose up -d
 
-Rest API:
+Execute the initialization script. Run one of the following commands:
 
-http://127.0.0.1:8000/
-
-`user: admin`
-
-`password: password123`
-
-# Database initialization
-
-There is a Shell and a Batch script in the project root. They create the database tables and import example data. The
-Docker containers need to be running during script execution.
-
-On Linux or Mac, from the project root:
+On Unix or MacOS, run:
 
     ./init.sh
 
-On Windows, from the project root:
+On Windows, run:
 
     init.bat
 
-# References
+_Note: you may need to add execution permission to the script. Check the terminal output after running the command for details._
 
-- https://www.django-rest-framework.org/tutorial/quickstart/
-- https://www.django-rest-framework.org/tutorial/1-serialization/
-- https://docs.docker.com/compose/django/
-- https://hub.docker.com/_/python
-- https://docs.docker.com/compose/compose-file/compose-file-v3/
+Open in a browser:
+
+http://127.0.0.1:8000/
+
+http://127.0.0.1:5000/
