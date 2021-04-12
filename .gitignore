@@ -9,5 +9,9 @@
 __pycache__/
 venv/
 
+# Nodejs
+node_modules/
+build/
+
 # backend
 /backend/media/
