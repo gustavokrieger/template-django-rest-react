@@ -17,5 +17,3 @@ WORKDIR /usr/src/app
 ARG REQUIREMENTS=requirements.txt
 COPY $REQUIREMENTS .
 RUN pip install --no-cache-dir -r $REQUIREMENTS
-
-COPY . .
