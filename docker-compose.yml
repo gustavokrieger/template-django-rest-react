@@ -27,6 +27,7 @@ services:
     depends_on:
       - db
 
+  # todo add volume.
   frontend:
     build: ./frontend
     ports:
