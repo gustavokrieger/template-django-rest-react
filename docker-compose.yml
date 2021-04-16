@@ -1,5 +1,7 @@
 version: "3.9"
 
+# TODO: change so it can run after local development.
+
 services:
   db:
     image: postgres:13.2
